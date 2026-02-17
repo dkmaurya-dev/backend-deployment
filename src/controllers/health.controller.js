@@ -7,7 +7,7 @@ import { asyncHandler } from "../middlewares/error.middleware.js";
 export const healthCheck = asyncHandler(async (req, res) => {
   const healthData = {
     success: true,
-    message: "API is running and healthy :)|Deepak1",
+    message: "API is running and healthy :)|Deepak2",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     environment: process.env.NODE_ENV || "development",
@@ -30,7 +30,7 @@ export const healthCheck = asyncHandler(async (req, res) => {
 export const detailedHealthCheck = asyncHandler(async (req, res) => {
   const healthData = {
     success: true,
-    message: "API is running1",
+    message: "API is running2",
     timestamp: new Date().toISOString(),
     system: {
       uptime: process.uptime(),
