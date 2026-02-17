@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Setup SSH 
         uses: actions/checkout@v2 
+      - name: Debug secrets (safe)
+        run: |
+          echo "HOST SET: ${{ secrets.EC2_HOST != '' }}"
+          echo "USER SET: ${{ secrets.EC2_USER != '' }}"
+          echo "KEY SET: ${{ secrets.EC2_SSH_KEY != '' }}"
 
       - name: Deploy to EC2
         env:
