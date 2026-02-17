@@ -25,7 +25,7 @@ const PORT = normalizePort(config.port);
  * Start server
  */
 const server = app.listen(PORT, () => {
-    logger.success(`🚀 Server running in ${config.env} mode`);
+    logger.success(`🚀 Server running in ${config.env} mode1`);
     logger.info(`📡 Listening on port ${PORT}`);
     logger.info(`🌐 API URL: http://${config.host}:${PORT}${config.api.prefix}`);
     logger.info(`💚 Health check: http://${config.host}:${PORT}${config.api.prefix}/health`);
