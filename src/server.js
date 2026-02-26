@@ -1,6 +1,7 @@
 import app from './app.js';
 import config from './config/env.js';
 import logger from './utils/logger.js';
+import { checkDBConnection } from "./config/db.js";
 
 /**
  * Normalize port
@@ -24,7 +25,10 @@ const PORT = normalizePort(config.port);
 /**
  * Start server
  */
-const server = app.listen(PORT, () => {
+await checkDBConnection();
+
+const server = app.listen(PORT, async() => {
+
     logger.success(`🚀 Server running in ${config.env} mode1`);
     logger.info(`📡 Listening on port ${PORT}`);
     logger.info(`🌐 API URL: http://${config.host}:${PORT}${config.api.prefix}`);

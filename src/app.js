@@ -9,6 +9,7 @@ import { errorHandler, notFoundHandler } from './middlewares/error.middleware.js
 import healthRoutes from './routes/health.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
+import { pool } from "./config/db.js";
 
 /**
  * Create Express application
@@ -41,6 +42,23 @@ app.use(cors(corsOptions));
 // Body parser
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+
+// db connection
+app.get("/health", async (_req, res) => {
+  const [rows] = await pool.query("SELECT 1");
+  res.json({ status: "ok", db: rows });
+});
+
+app.get("/users", async (_req, res) => {
+  const [users] = await pool.query(
+    "SELECT id, email FROM users LIMIT 10"
+  );
+  res.json(users);
+});
+
+
+
 
 // HTTP request logger
 if (config.isDevelopment()) {
